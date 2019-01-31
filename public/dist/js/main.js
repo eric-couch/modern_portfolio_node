@@ -13,7 +13,7 @@ function startTime() {
   });
   var t = setTimeout(function() {
     startTime();
-  }, 8000);
+  }, 4000);
 }
 
 document.querySelectorAll(".skilldetail").forEach(item =>

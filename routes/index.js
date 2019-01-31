@@ -4,23 +4,23 @@ var path = require("path");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.sendFile("index.html", { root: path.join(__dirname, "../public/dist") });
+  res.render("index.html", { current: "/" });
+});
+
+router.get("/about.html", function(req, res, next) {
+  res.render("about.html", { current: "about" });
 });
 
 router.get("/skills.html", function(req, res, next) {
-  res.sendFile("skills.html", { root: path.join(__dirname, "../public/dist") });
+  res.render("skills.html", { current: "skills" });
 });
 
 router.get("/contact.html", function(req, res, next) {
-  res.sendFile("contact.html", {
-    root: path.join(__dirname, "../public/dist")
-  });
+  res.render("contact.html", { current: "contact" });
 });
 
 router.get("/work.html", function(req, res, next) {
-  res.sendFile("work.html", {
-    root: path.join(__dirname, "../public/dist")
-  });
+  res.render("work.html", { current: "work" });
 });
 
 module.exports = router;

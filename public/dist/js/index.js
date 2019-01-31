@@ -1,6 +1,10 @@
 function updateValues(data) {
   const { name, tagline, links } = data[0]; // destructuring
 
+  // const name = data[0].name;
+  // const tagline = data[0].tagline;
+  // const links = data[0].links;
+
   var heading = document.querySelector(".lg-heading");
   var secondaryheading = document.createElement("span"); // <span></span>
   secondaryheading.classList.add("text-secondary"); // <span class="text-secondary"></span>
