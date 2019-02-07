@@ -8,7 +8,6 @@ var session = require("express-session");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const GOOGLE_CONSUMER_KEY = require("./config/keys").clientid;
 const GOOGLE_CONSUMER_SECRET = require("./config/keys").secret;
-// util = require('util')
 
 let ejs = require("ejs");
 ejs.open = "{{";
@@ -64,6 +63,7 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, done) {
       passport.session.profile = profile;
+      console.log(profile);
       return done(null, profile);
     }
   )
