@@ -1,9 +1,12 @@
 function updateValues(data) {
-  const { name, tagline, links } = data[0]; // destructuring
+  const { _id, name, tagline, links } = data[0]; // destructuring
 
-  // const name = data[0].name;
-  // const tagline = data[0].tagline;
-  // const links = data[0].links;
+  var idTag = document.createElement("input");
+  idTag.type = "hidden";
+  idTag.value = _id;
+  idTag.id = "dbid";
+  idTag.name = "dbid";
+  document.body.appendChild(idTag);
 
   var heading = document.querySelector(".lg-heading");
   var secondaryheading = document.createElement("span"); // <span></span>
@@ -12,10 +15,10 @@ function updateValues(data) {
     name.lastIndexOf(" "),
     name.length
   ); // <span class="text-secondary">Couch</span>
-  heading.innerHTML = name.substring(0, name.lastIndexOf(" ")); // <h1 class="lg-heading">Eric</h1>
+  heading.innerHTML += name.substring(0, name.lastIndexOf(" ")); // <h1 class="lg-heading">Eric</h1>
   heading.appendChild(secondaryheading); // <h1 class="lg-heading">Eric<span class="text-secondary">Couch</span></h1>
 
-  var heading = (document.querySelector(".sm-heading").innerHTML = tagline); // <h2 class="sm-heading">Full-Stack Developer, Software Development Instructor</h2>
+  var heading = (document.querySelector(".sm-heading").innerHTML += tagline); // <h2 class="sm-heading">Full-Stack Developer, Software Development Instructor</h2>
 
   // links
   // sort the links by order using the array.sort method
@@ -40,10 +43,10 @@ function updateValues(data) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  postData("/portfolio/", "").then(data => updateValues(data));
+  getData("/portfolio/", "").then(data => updateValues(data));
 });
 
-function postData(url, data) {
+function getData(url, data) {
   // Default options are marked with *
   return fetch(url, {
     //body: JSON.stringify(data), // must match 'Content-Type' header

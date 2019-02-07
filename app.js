@@ -3,6 +3,13 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var passport = require("passport");
+var session = require("express-session");
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const GOOGLE_CONSUMER_KEY = require("./config/keys").clientid;
+const GOOGLE_CONSUMER_SECRET = require("./config/keys").secret;
+// util = require('util')
+
 let ejs = require("ejs");
 ejs.open = "{{";
 ejs.close = "}}";
@@ -28,10 +35,54 @@ app.use("/img", express.static(__dirname + "/public/dist/img"));
 app.use("/css", express.static(__dirname + "/public/dist/css"));
 app.use("/js", express.static(__dirname + "/public/dist/js"));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/portfolio", portfolioRouter);
 app.use("/skills", skillsRouter);
+
+app.use(
+  session({ secret: "something somethingelse", cookie: { maxAge: 60000 } })
+);
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: GOOGLE_CONSUMER_KEY,
+      clientSecret: GOOGLE_CONSUMER_SECRET,
+      callbackURL: "http://localhost:3000/auth/google/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+      passport.session.profile = profile;
+      return done(null, profile);
+    }
+  )
+);
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["https://www.googleapis.com/auth/plus.login"]
+  })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
+  function(req, res) {
+    res.redirect("/");
+  }
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -50,3 +101,15 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+// Simple route middleware to ensure user is authenticated.
+//   Use this route middleware on any resource that needs to be protected.  If
+//   the request is authenticated (typically via a persistent login session),
+//   the request will proceed.  Otherwise, the user will be redirected to the
+//   login page.
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/");
+}

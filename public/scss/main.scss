@@ -1,6 +1,7 @@
 @import "config";
 @import "menu";
 @import "skills";
+@import "modal";
 
 * {
   box-sizing: border-box;
@@ -65,6 +66,19 @@ main {
       }
     }
   }
+
+  .edit {
+    //display: block;
+    //visibility: hidden;
+    // position: absolute;
+    font-size: 1rem;
+    width: 18px;
+    height: 20px;
+    top: 0px;
+    right: 0px;
+    overflow: hidden;
+  }
+
   &#home {
     overflow: hidden;
     h1 {

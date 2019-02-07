@@ -21,7 +21,39 @@
       <div class="icons"></div>
     </main>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Modal Header</h2>
+        </div>
+        <div class="modal-body">
+          <i class="fas fa-blog"></i>
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-github"></i>
+          <i class="fab fa-gitlab"></i>
+          <i class="fab fa-pinterest"></i>
+          <i class="fab fa-reddit"></i>
+          <i class="fab fa-skype"></i>
+          <i class="fab fa-stack-overflow"></i>
+          <i class="fab fa-tumblr"></i>
+          <i class="fab fa-twitch"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-wordpress"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+        <div class="modal-footer">
+          <h3>Modal Footer</h3>
+        </div>
+      </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/index.js"></script>
+    <% if (passportsession.id == adminid) { %>
+    <script src="js/indexadmin.js"></script>
+    <% } %>
   </body>
 </html>
