@@ -26,6 +26,8 @@ function updateValues(data) {
     return a.order - b.order;
   });
 
+  var iconlist = document.createElement("ul");
+
   links.forEach(function(e, i) {
     const { name, link, icon, order } = e; // destructuring
     var anchor = document.createElement("a"); // <a></a>
@@ -36,10 +38,18 @@ function updateValues(data) {
       item.classList.add(e);
     }); // <i class="fab fa-github fa-3x"></i>
 
-    anchor.appendChild(item); // <a href="https://github.com/eric-couch"><i class="fab fa-github fa-3x"></i></a>
-    document.querySelector(".icons").appendChild(anchor);
+    var iconlistitem = document.createElement("li");
+
+    for (var i = 0; i < 4; i++) {
+      var emptyspan = document.createElement("span");
+      anchor.appendChild(emptyspan);
+    }
+    anchor.appendChild(item);
+    iconlistitem.appendChild(anchor);
+    iconlist.appendChild(iconlistitem);
     // <div class="icons"><a href="https://github.com/eric-couch"><i class="fab fa-github fa-3x"></i></a></div>
   });
+  document.querySelector(".icons").appendChild(iconlist);
 }
 
 document.addEventListener("DOMContentLoaded", function() {

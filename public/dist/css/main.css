@@ -199,6 +199,55 @@ main {
   background-color: steelblue;
   color: white; }
 
+@media screen and (min-width: 1171px) {
+  .projects {
+    grid-template-columns: repeat(4, 1fr); } }
+
+@media screen and (min-width: 769px) and (max-width: 1170px) {
+  .projects {
+    grid-template-columns: repeat(3, 1fr); } }
+
+@media screen and (max-width: 768px) {
+  main {
+    align-items: center;
+    text-align: center; }
+    main .lg-heading {
+      line-height: 1;
+      margin-bottom: 1rem; }
+    main h1.lg-heading {
+      font-size: 4rem; }
+  ul.menu-nav,
+  div.menu-branding {
+    float: none;
+    width: 100%;
+    min-height: 0; }
+    ul.menu-nav.show,
+    div.menu-branding.show {
+      transform: translate3d(0, 0, 0); }
+  .menu-nav {
+    height: 70vh;
+    transform: translate3d(-100%, 0, 0);
+    font-size: 18px;
+    line-height: 1rem; }
+  .menu-branding {
+    height: 30vh;
+    transform: translate3d(100%, 0, 0); }
+    .menu-branding .portrait {
+      background: url("../img/portrait_small.jpg");
+      width: 150px;
+      height: 150px; } }
+
+@media screen and (max-width: 500px) {
+  main {
+    padding: 2rem; }
+    main #home h1 {
+      margin-top: 10vh; }
+    main .lg-heading {
+      margin-top: 1rem;
+      font-size: 3rem; }
+  .projects {
+    grid-template-columns: 1fr; } }
+
 * {
   box-sizing: border-box; }
 
@@ -255,12 +304,75 @@ main {
   padding: 4rem;
   height: 100%; }
   main .icons {
-    margin-top: 1rem; }
-    main .icons a {
-      padding: 0.4rem; }
-      main .icons a:hover {
-        color: steelblue;
-        transition: all 0.5s ease-out; }
+    margin: 0; }
+    main .icons ul {
+      position: relative;
+      top: 50%;
+      margin: 0;
+      padding: 0;
+      display: flex; }
+    main .icons ul li {
+      list-style: none; }
+    main .icons ul li a {
+      display: block;
+      position: relative;
+      width: 4rem;
+      height: 4rem;
+      line-height: 2rem;
+      font-size: 1rem;
+      text-align: center;
+      text-decoration: none;
+      color: steelblue;
+      margin: 0 1rem;
+      padding: 0.35rem;
+      transition: 0.5s; }
+    main .icons ul li a span {
+      position: absolute;
+      transition: transform 0.5s; }
+    main .icons ul li a span:nth-child(1),
+    main .icons ul li a span:nth-child(3) {
+      width: 100%;
+      height: 1px;
+      background: steelblue; }
+    main .icons ul li a span:nth-child(1) {
+      top: 0;
+      left: 0;
+      transform-origin: right; }
+    main .icons ul li a:hover span:nth-child(1) {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s; }
+    main .icons ul li a span:nth-child(3) {
+      bottom: 0;
+      left: 0;
+      transform-origin: left; }
+    main .icons ul li a:hover span:nth-child(3) {
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s; }
+    main .icons ul li a span:nth-child(2),
+    main .icons ul li a span:nth-child(4) {
+      width: 1px;
+      height: 100%;
+      background: steelblue; }
+    main .icons ul li a span:nth-child(2) {
+      top: 0;
+      left: 0;
+      transform: scaleY(0);
+      transform-origin: bottom; }
+    main .icons ul li a:hover span:nth-child(2) {
+      transform: scaleY(1);
+      transform-origin: top;
+      transition: transform 0.5s; }
+    main .icons ul li a span:nth-child(4) {
+      top: 0;
+      right: 0;
+      transform: scaleY(0);
+      transform-origin: top; }
+    main .icons ul li a:hover span:nth-child(4) {
+      transform: scaleY(1);
+      transform-origin: bottom;
+      transition: transform 0.5s; }
   main .edit {
     font-size: 1rem;
     width: 18px;
