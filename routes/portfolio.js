@@ -8,7 +8,8 @@ const ADMIN_ID = require("../config/keys").googleadminid;
 
 router.all("/", function(req, res, next) {
   MongoClient.connect(mongouri, function(err, db) {
-    var dbo = db.db("modern_portfolio");
+    //var dbo = db.db("modern_portfolio");
+    var dbo = db.db("test");
     dbo
       .collection("candidate")
       .find()
@@ -23,7 +24,7 @@ router.all("/", function(req, res, next) {
 router.all("/saveName", function(req, res, next) {
   if (passport.session.profile && passport.session.profile.id == ADMIN_ID) {
     MongoClient.connect(mongouri, function(err, db) {
-      var dbo = db.db("modern_portfolio");
+      var dbo = db.db("test");
       var newvalues = { $set: { name: req.body.name } };
       dbo
         .collection("candidate")
@@ -43,7 +44,7 @@ router.all("/saveName", function(req, res, next) {
 router.all("/saveTagline", function(req, res, next) {
   if (passport.session.profile && passport.session.profile.id == ADMIN_ID) {
     MongoClient.connect(mongouri, function(err, db) {
-      var dbo = db.db("modern_portfolio");
+      var dbo = db.db("test");
       var newvalues = { $set: { tagline: req.body.tagline } };
       dbo
         .collection("candidate")

@@ -8,7 +8,7 @@ function updateValues(data) {
   idTag.name = "dbid";
   document.body.appendChild(idTag);
 
-  var heading = document.querySelector(".lg-heading");
+  var heading = document.querySelector(".lg-heading"); // selector for lg-heading
   var secondaryheading = document.createElement("span"); // <span></span>
   secondaryheading.classList.add("text-secondary"); // <span class="text-secondary"></span>
   secondaryheading.innerText = name.substring(
